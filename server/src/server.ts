@@ -1,14 +1,9 @@
 import fastify from 'fastify'
-import { PrismaClient } from '@prisma/client'
+import { memoriesRoutes } from './routes/memories'
 
 const app = fastify()
-const prisma = new PrismaClient()
-// definindo rotas
-// fazendo conexão com o prisma
-app.get('/users', async () => {
-  const users = await prisma.users.findMany()
-  return users
-})
+
+app.register(memoriesRoutes)
 
 // definindo uma porta para a aplicação
 app
